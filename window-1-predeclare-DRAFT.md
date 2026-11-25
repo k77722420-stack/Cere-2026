@@ -1,5 +1,5 @@
 # CERE — Window #1 Predeclaration
-### Status: DRAFT — NOT LOCKED · Date: November 25, 2026 · **Takes effect only when Ken signs it (see the Lock section at the end). Forecasts made before the lock do not count.**
+### v2 — revised Nov 25, 2026, per Linear HOLD findings; status DRAFT — NOT LOCKED, takes effect only on Ken's word (the Lock, §8). Forecasts made before the lock do not count.
 
 ---
 
@@ -69,29 +69,46 @@ Scoring is fixed now, before any forecast exists, so nobody can grade kindly aft
 3. **Spoken-forecast error at its coverage.** After Ken commits, a forecast is *revealed* to him only if its top probability met the speaking threshold τ (design bar: the confidence level at which measured accuracy reaches 0.80 — Architecture & Math, Eq. 6). Error is reported **among revealed forecasts, always beside the coverage** — the share of decisions CERE spoke on at all. Accuracy is never reported without coverage beside it (Rule E-8). Forecasts below threshold are still graded silently.
 4. **Exposure is scored separately — and can disqualify.** Every verdict records **exposure status separately from correctness** (Rule E-6). If Ken saw a forecast before deciding, that decision is marked *exposed* and is **excluded from the primary scoring, permanently, for this window** — a choice the forecast may have caused cannot prove the forecast right. In shadow mode this should never happen; if it does, it is also a gate incident.
 5. **Paired by decision cluster.** Counts and uncertainty are reported **paired by decision cluster** — one decision, one count, however many records describe it (Rule E-8; Gate G-3 clustering).
-6. **The controls.** The same decisions, with the same decision-time information, are also forecast by two controls (Blueprint §6; Perplexity verdict §4): **(a)** a **generic-user control** — what a typical person would likely do, with no access to Ken's history; **(b)** the **statistics-only** predictor — which, at β = 0, *is* CERE in Window #1. Window #1's live question is therefore the personalization question in its purest form: **does Ken's own confirmed history beat the generic guess?** If the generic control wins, the result is not personalization and will not be called that.
+6. **The controls — all three predictors, both comparisons, always printed.** The same decisions, with the same decision-time information, are also forecast by two controls (Blueprint §6; Perplexity verdict §4): **(a)** a **generic-user control** — what a typical person would likely do, with no access to Ken's history; **(b)** the **statistics-only** predictor — which, at β = 0, *is* CERE in Window #1. Every report therefore shows **all three predictors** (CERE, statistics-only, generic-user) and **both lift comparisons explicitly**: CERE vs. the generic-user control, **and** CERE vs. the statistics-only predictor (Rule E-5 requires lift over both controls). In Window #1 the second comparison reads **zero by construction** — at β = 0 the two predictors are the same machine — and it is **printed, not hidden**: a zero the reader can see is honest; a missing column would not be. Window #1's live question is therefore the personalization question in its purest form: **does Ken's own confirmed history beat the generic guess?** If the generic control wins, the result is not personalization and will not be called that. How advancement is judged, given the by-construction zero, is set by Ken's policy decision in §7 — a decision, recorded below in his name, **not** an exemption: both comparisons are still reported in full.
 7. **Reveals are batched.** Forecasts are revealed to Ken in a **weekly batch** after he commits — never one at a time in the moment (Rule E-7). Every report carries the standing limitation in plain words: *the primary analysis is same-decision uncontaminated, not influence-free across decisions.*
 
-## 7. The numbers that get set at lock time (Rule E-5)
+## 7. Advancement, the kill criterion, and the numbers set at lock time (Rule E-5)
 
-These are deliberately **not** invented in this draft. They are set when the window opens, **with the confirmed-episode counts in view** (Domain & Triggers Draft: "predeclared at window opening… never invented in advance"). Ken fills these in — or approves Lux's proposed values — at signing:
+> **POLICY DECISION — Ken Blum, November 25, 2026 (resolves Linear HOLD Finding 1).**
+> Window #1 advancement is judged on three conditions: **lift over the generic-user control**, the **spoken-error gate**, and the **coverage gate** (values set below at lock time). **Lift over the statistics-only predictor is formally deferred** to the first window in which β may exceed 0 — because at β = 0, CERE and the statistics-only predictor are identical, and lift over an identical predictor cannot be earned, only manufactured. This is a **policy decision, not an exemption**: Rule E-5's both-controls *reporting* stands in full for Window #1 (§6.6) — both comparisons are computed and printed, and the statistics-only comparison will read zero by construction. Only the *advancement criterion* for this one window is set by this decision. Recorded in the predeclaration before lock, the way the Enforcement Charter requires policy decisions to be recorded.
+
+**The kill criterion (all conditions, no partial credit).** At N scored cases, **every** advancement condition must pass — lift over the generic-user control at or above its line, spoken-error at or below its line, coverage at or above its line. If **any** condition misses, Window #1 **archives with a written negative result** — which is a success of the method, not a failure to hide (Rule E-5). There is no "the lift was good, so the error rate doesn't matter." Thresholds are never lowered mid-window to make the system talk.
+
+**The calendar rule.** If the window's closing date (§2) arrives **before** N scored cases are reached, the window closes as **INCOMPLETE**: it archives with its counts reported exactly as they stand, and it **advances nothing** — no advancement proposal may be made from an incomplete window, whatever the partial numbers look like. A later attempt is a new window under a new predeclaration.
+
+**The numbers themselves** are deliberately **not** invented in this draft. They are set when the window opens, **with the confirmed-episode counts in view** (Domain & Triggers Draft: "predeclared at window opening… never invented in advance"). Ken fills these in — or approves Lux's proposed values — at signing:
 
 - Graded-decision target **N** = ______ decisions
-- Minimum useful **lift** over the generic-user control = ______ (e.g., Brier-score improvement)
-- Acceptable **spoken-error rate** = ______ (share of revealed forecasts that may miss)
-- Minimum useful **coverage** = ______ (share of triggered decisions CERE must speak on for the window to mean anything)
-- **Kill criterion:** at N, if the lift is below the line above, Window #1 **archives with a written negative result** — which is a success of the method, not a failure to hide (Rule E-5). Thresholds are never lowered mid-window to make the system talk.
+- Minimum useful **lift** over the generic-user control = ______ (e.g., Brier-score improvement) — *an advancement condition (policy decision above)*
+- Minimum useful **lift** over the statistics-only predictor = **DEFERRED** — reported in Window #1, judged as an advancement condition only from the first β > 0 window (policy decision above)
+- Acceptable **spoken-error rate** = ______ (share of revealed forecasts that may miss) — *an advancement condition*
+- Minimum useful **coverage** = ______ (share of triggered decisions CERE must speak on for the window to mean anything) — *an advancement condition*
 
 ## 8. LOCK
 
-> **This predeclaration takes effect only when Ken signs it.**
+> **This predeclaration takes effect only when Ken signs it — and signing is the last of three separate acts, not the first.**
 >
-> - Until Ken signs, Window #1 does not exist: **forecasts made before the lock do not count**, episodes proposed under the schema are examples and drafts only, and nothing in this document binds anyone.
-> - Signing means: the dates in §2 are filled, the numbers in §7 are set, and Ken says the word — in chat or by signature below.
-> - After the lock, this document is **append-only and version-sealed** (Rule E-11). Any change to the domain, triggers, outcome set, forecast format, scoring rule, or thresholds **opens a new window** — it never rewrites this one (Charter amendment rule).
+> **Lock prerequisites — all three must be true before Ken signs:**
+> - **(a) The Episode Schema is approved by Ken.** Schema approval is its own act: it makes the *form* live (episodes may be proposed and confirmed on it). It does **not** open this window.
+> - **(b) The one-week pilot is completed AND accepted by Ken.** The forecasting-disabled pilot (pilot run sheet, Part A) has run its week, its verdict report has been delivered, and Ken has accepted it. A completed-but-unaccepted pilot does not satisfy this prerequisite.
+> - **(c) This document is complete and signed:** the dates in §2 are filled, the numbers in §7 are set, and Ken says the word — in chat or by signature below.
+>
+> **Schema approval ≠ window lock.** Approving the form, accepting the pilot, and signing this predeclaration are three separate decisions by Ken, in that order. No one of them implies the others.
+>
+> - Until Ken signs, Window #1 does not exist: **forecasts made before the lock do not count**, and nothing in this document binds anyone.
+> - **Pilot-confirmed episodes stand.** Episodes Ken confirmed during the pilot **do** enter the Precedent Index — confirming them was the pilot's purpose — and they carry into Window #1 as its starting evidence. What remains "drafts only" before the lock is **unconfirmed proposals**: they are not evidence and never were (Gate G-3; schema Eligibility definition).
+> - After the lock, this document is **append-only and version-sealed** (Rule E-11), and changes are governed by the Amendment Rule below.
 >
 > Signed: ______________________________  Date: ______________
 > (Ken — Kenneth Lee Blum Jr)
+
+> **THE AMENDMENT RULE — the same in all three Phase 2 documents.**
+> Ordinary episode additions, and lineage-preserving corrections (Charter P-8; Rule E-10 — dated, with provenance kept), do **not** open a new window. **Any** other change to what is locked — the policy in these documents, the episode schema's version, the scoring rule, any threshold, the domain, the triggers, the outcome set, or the profile/index rules (Rule E-11) — **does**: the window closes at that point, results stand only back to the last sealed version, and a new window may open only under a new predeclaration. This rule itself changes only by a dated policy decision from Ken.
 
 ---
 

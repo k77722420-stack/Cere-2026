@@ -1,6 +1,6 @@
 # CERE — Episode Schema v1 (the episode form)
-### Status: DRAFT · Date: November 25, 2026 · **Takes effect only on Ken's word.**
-### Nothing written with this form counts as evidence until Ken locks it — and no episode counts at all until Ken confirms it (Gate G-3).
+### v2 — revised Nov 25, 2026, per Linear HOLD findings; status DRAFT, takes effect only on Ken's word.
+### This form takes effect when Ken approves it — a separate act from locking Window #1 (see the predeclaration's Lock section). And no episode counts as evidence until Ken confirms it **and** it meets the Eligibility definition below (Gate G-3).
 
 ---
 
@@ -30,7 +30,7 @@ Episodes are the **only fuel** CERE runs on. The list of confirmed episodes is c
 | Field | What it means, plainly | Required? |
 |---|---|---|
 | `domain` | What kind of decision this was. For now this is locked to one value: **business & platform decisions** (the locked study domain — see Window #1 predeclaration). | Yes |
-| `trigger` | Which of the five mechanical triggers fired — the named event that made this a decision point (Enforcement Rule E-1; Domain & Triggers Draft, Nov 23, 2026). One of: **(1)** a platform or store problem surfaces · **(2)** a new channel or platform opportunity appears · **(3)** a vendor or program offer arrives · **(4)** a product-line question opens · **(5)** a posting-scope question opens. No trigger, no episode. | Yes |
+| `trigger` | Which of the five mechanical triggers fired — the named event that made this a decision point (Enforcement Rule E-1; Domain & Triggers Draft, Nov 23, 2026). One of: **(1)** a platform or store problem surfaces · **(2)** a new channel or platform opportunity appears · **(3)** a vendor or program offer arrives — including the trigger's second clause, *a fee-bearing decision with a date on it* · **(4)** a product-line question opens · **(5)** a posting-scope question opens. No trigger, no episode. When trigger 3 fires through the fee-bearing clause rather than an arriving offer, the episode says so plainly (see the example below). | Yes |
 | `decision_point_time` | The date and time the decision landed in front of Ken — when he had to call it, not when paperwork finished. | Yes |
 | `situation` | What came up, in one or two plain sentences. | Yes |
 | `known_at_the_time` | The facts Ken actually had when he decided. Nothing learned later may be written here — later knowledge would make old decisions look easier or dumber than they were (Enforcement Rule E-3: no future information leaks backward). | Yes |
@@ -64,7 +64,7 @@ Episodes are the **only fuel** CERE runs on. The list of confirmed episodes is c
 | `proposed_by` / `proposed_at` | Who wrote the proposal (the system / Lux) and when. | Yes |
 | `ken_decision` | **confirmed** or **rejected**, exactly as Ken gave it. | At review |
 | `ken_decision_at` | When Ken confirmed or rejected it. | At review |
-| `corrections` | Anything Ken fixes in the episode, with the date. Corrections are law (Charter P-8): the corrected version is what the index uses, and the correction itself stays on the record. Ken may also delete an episode outright — the deletion is honored at once, and any change it makes to scoring coverage is reported, never quietly absorbed (Enforcement Rule E-10). | As they happen |
+| `corrections` | Anything Ken fixes in the episode, with the date. Corrections are law (Charter P-8) and stay on the record with their provenance. **A material correction does not inherit the old confirmation** — it returns the episode to **proposed** until Ken re-confirms it (see the Eligibility section). A correction is *material* if it changes any decision field: `trigger`, `domain`, `situation`, `known_at_the_time`, `options_faced`, `choice_made`, or `committed_at`. Filling in `outcome` later, or adding a source record, is not material — those are the episode's normal life — but they are still logged with dates. Ken may also delete an episode outright — the deletion is honored at once, and any change it makes to scoring coverage is reported, never quietly absorbed (Enforcement Rule E-10). | As they happen |
 
 ---
 
@@ -73,10 +73,30 @@ Episodes are the **only fuel** CERE runs on. The list of confirmed episodes is c
 1. **A trigger fires** in the normal flow of work (a platform problem, an offer, a channel question…).
 2. **The system drafts a proposed episode** from the record — every field above filled from sources, nothing invented. Status: **proposed**.
 3. **Ken reviews it** — one tap or one short message per episode (Enforcement Rule E-12: Ken's step costs one tap; all the structuring is the system's work). He can **confirm**, **reject**, or **correct** any field.
-4. **Confirmed** → the episode enters the Precedent Index and may be used as evidence. **Rejected** → it is filed as rejected and never used. **Still proposed** → it is *not* evidence, full stop.
-5. Episodes are **append-only and version-sealed** once confirmed (Enforcement Rule E-11). A fix is a dated correction entry, never a silent edit — an in-place edit invalidates study results back to the last sealed version.
+4. **Confirmed** → the episode enters the Precedent Index and may be used as evidence — but only if it meets the Eligibility definition below, exactly. **Rejected** → it is filed as rejected and never used. **Still proposed** → it is *not* evidence, full stop.
+5. Episodes are **append-only and version-sealed** once confirmed (Enforcement Rule E-11). A fix is a dated correction entry, never a silent edit — an in-place edit invalidates study results back to the last sealed version. What a correction may and may not do without opening a new window is governed by the Amendment Rule below — the same rule, word for word, in all three Phase 2 documents.
 
 **What never happens:** a forecast never becomes an episode; a verdict never becomes an episode; a profile statement never counts as a vote beside the episodes it was built from (Charter P-3, Enforcement Rule E-9). Ken's *decisions* are data. The model's *guesses* are not.
+
+---
+
+## Eligibility — the one enforceable definition (Gate G-3)
+
+"Ken confirmed it" is not a feeling; it is a check. An episode is **eligible** — it may sit in the Precedent Index and be used by any forecast — only when **all** of these hold at the same time:
+
+1. `status` = **confirmed**, **and**
+2. `ken_decision` = **confirmed**, **and**
+3. `ken_decision_at` is present (a real timestamp), **and**
+4. the three fields **agree with each other**. Any contradiction — `status` says confirmed but `ken_decision` is missing, blank, or says rejected; a confirmation with no timestamp; a timestamp with no decision — makes the episode **ineligible until Ken resolves it**. Nobody resolves a contradiction by guessing which field "meant" what.
+5. **Timing (Rule E-3):** `ken_decision_at` must come **before the information cutoff** of any forecast that would use the episode. An episode confirmed after a forecast's cutoff cannot be used by that forecast — not during the window, and not retroactively afterward.
+6. **Corrections reset confirmation when they are material.** A material correction (see the `corrections` field) returns the episode to **proposed**: the earlier confirmation does **not** carry over to the corrected content, the lineage (what changed, when, and the prior version) is preserved, and the episode is ineligible until Ken re-confirms the corrected version.
+
+If any condition fails, the episode is treated exactly like an unconfirmed proposal: not evidence, not counted, not quoted, not built on.
+
+---
+
+> **THE AMENDMENT RULE — the same in all three Phase 2 documents.**
+> Ordinary episode additions, and lineage-preserving corrections (Charter P-8; Rule E-10 — dated, with provenance kept), do **not** open a new window. **Any** other change to what is locked — the policy in these documents, the episode schema's version, the scoring rule, any threshold, the domain, the triggers, the outcome set, or the profile/index rules (Rule E-11) — **does**: the window closes at that point, results stand only back to the last sealed version, and a new window may open only under a new predeclaration. This rule itself changes only by a dated policy decision from Ken.
 
 ---
 
@@ -91,7 +111,7 @@ Episodes are the **only fuel** CERE runs on. The list of confirmed episodes is c
 | `cluster_id` | `llc-filing-timing` |
 | `status` | **proposed** (example) |
 | `domain` | business & platform decisions |
-| `trigger` | (3) a vendor or program offer arrives — a fee-bearing filing decision with a date on it (the LLC filing, ~$150 state fee, date set for Dec 1) |
+| `trigger` | (3) a vendor or program offer arrives — **fired through this trigger's second clause: a fee-bearing decision with a date on it.** No vendor offer arrived in this case. What fired was the LLC filing itself: a ~$150 state fee attached to a set date (Dec 1). Trigger 3's full text (Domain & Triggers Draft, Nov 23, 2026): "partner program, paid tier, trial ending/conversion, **or a fee-bearing decision with a date on it**." |
 | `decision_point_time` | November 24, 2026 |
 | `situation` | The Diverse Innovation LLC filing was planned for December 1, 2026. Ken moved it to January 2027. |
 | `known_at_the_time` | Dec 1 was the standing plan (set Nov 5). Filing in January puts it after McDonald's last paycheck of December — a fresh January start. Moving the LLC also moves what hangs off it: the business insurance decision, re-filing "Too Much On Purpose" under the LLC, first filing of "Tech Love Tech Services" under the LLC, the LLC's own EIN, and channel timing (Amazon + Walmart under the LLC). The sole-proprietor DBA, sales tax license, and store were already live and unaffected. |
